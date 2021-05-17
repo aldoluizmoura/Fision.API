@@ -1,0 +1,12 @@
+C:\dev\Fision\GestaoFluxoFinanceiro.API\FIsionAPI\FIsionAPI.Data\bin\Debug\netcoreapp3.1\FIsionAPI.Data.deps.json
+C:\dev\Fision\GestaoFluxoFinanceiro.API\FIsionAPI\FIsionAPI.Data\bin\Debug\netcoreapp3.1\FIsionAPI.Data.dll
+C:\dev\Fision\GestaoFluxoFinanceiro.API\FIsionAPI\FIsionAPI.Data\bin\Debug\netcoreapp3.1\FIsionAPI.Data.pdb
+C:\dev\Fision\GestaoFluxoFinanceiro.API\FIsionAPI\FIsionAPI.Data\bin\Debug\netcoreapp3.1\FIsionAPI.Business.dll
+C:\dev\Fision\GestaoFluxoFinanceiro.API\FIsionAPI\FIsionAPI.Data\bin\Debug\netcoreapp3.1\FIsionAPI.Business.pdb
+C:\dev\Fision\GestaoFluxoFinanceiro.API\FIsionAPI\FIsionAPI.Data\obj\Debug\netcoreapp3.1\FIsionAPI.Data.csprojAssemblyReference.cache
+C:\dev\Fision\GestaoFluxoFinanceiro.API\FIsionAPI\FIsionAPI.Data\obj\Debug\netcoreapp3.1\FIsionAPI.Data.AssemblyInfoInputs.cache
+C:\dev\Fision\GestaoFluxoFinanceiro.API\FIsionAPI\FIsionAPI.Data\obj\Debug\netcoreapp3.1\FIsionAPI.Data.AssemblyInfo.cs
+C:\dev\Fision\GestaoFluxoFinanceiro.API\FIsionAPI\FIsionAPI.Data\obj\Debug\netcoreapp3.1\FIsionAPI.Data.csproj.CoreCompileInputs.cache
+C:\dev\Fision\GestaoFluxoFinanceiro.API\FIsionAPI\FIsionAPI.Data\obj\Debug\netcoreapp3.1\FIsionAPI.Data.csproj.CopyComplete
+C:\dev\Fision\GestaoFluxoFinanceiro.API\FIsionAPI\FIsionAPI.Data\obj\Debug\netcoreapp3.1\FIsionAPI.Data.dll
+C:\dev\Fision\GestaoFluxoFinanceiro.API\FIsionAPI\FIsionAPI.Data\obj\Debug\netcoreapp3.1\FIsionAPI.Data.pdb
