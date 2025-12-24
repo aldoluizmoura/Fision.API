@@ -81,7 +81,7 @@ public class CaixaService : BaseService, ICaixaService
             return false;
         }
 
-        var valorTotal = await CalcularValorTotal(caixa.Competencia); ;
+        var valorTotal = await CalcularValorTotal(caixa.Competencia);
 
         caixa.Situacao = Models.Enums.SituacaoCaixa.Aberto;
         caixa.Status = await VerificarStatus(caixa.Competencia);
