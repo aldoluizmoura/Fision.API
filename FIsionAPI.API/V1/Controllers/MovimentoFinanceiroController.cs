@@ -67,7 +67,7 @@ public class MovimentoFinanceiroController : BaseController
         return CustomResponse(movimentoViewModel);
     }
 
-    [HttpPost("adicionarValorProfissional-movimentoEntidade")]
+    [HttpPost("adicionar-valor-profissional-movimento-entidade")]
     public async Task<ActionResult<MovimentoFinanceiroViewModel>> AdicionarValorProfissional(MovimentoFinanceiroViewModel movimentoViewModel)
     {
         if (!ModelState.IsValid)
