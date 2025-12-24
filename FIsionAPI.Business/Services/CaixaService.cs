@@ -11,15 +11,18 @@ public class CaixaService : BaseService, ICaixaService
     private readonly ICaixaRepository _caixaRepository;
     private readonly IMovimentoFinanceiroAvulsoRepository _movimentoAvulsoRepositoy;
     private readonly IMovimentoFinanceiroRepository _movimentoRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
     public CaixaService(INotificador notificador,
                         ICaixaRepository caixaRepository,
                         IMovimentoFinanceiroRepository movimentoRepository,
-                        IMovimentoFinanceiroAvulsoRepository movimentoAvulsoRepositoy) : base(notificador)
+                        IMovimentoFinanceiroAvulsoRepository movimentoAvulsoRepositoy,
+                        IUnitOfWork unitOfWork) : base(notificador)
     {
         _caixaRepository = caixaRepository;
         _movimentoAvulsoRepositoy = movimentoAvulsoRepositoy;
         _movimentoRepository = movimentoRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<bool> Adicionar(Caixa caixa)
@@ -42,6 +45,7 @@ public class CaixaService : BaseService, ICaixaService
         caixa.ValorTotal = receitaTotal - despesaTotal;
 
         await _caixaRepository.Adicionar(caixa);
+        await _unitOfWork.Commit();
 
         return true;
     }
@@ -55,6 +59,7 @@ public class CaixaService : BaseService, ICaixaService
         }
 
         await _caixaRepository.Remover(caixa.Id);
+        await _unitOfWork.Commit();
 
         return true;
     }
@@ -69,6 +74,7 @@ public class CaixaService : BaseService, ICaixaService
 
         caixa.Situacao = Models.Enums.SituacaoCaixa.Fechado;
         await _caixaRepository.Atualizar(caixa);
+        await _unitOfWork.Commit();
 
         return true;
     }
@@ -89,6 +95,7 @@ public class CaixaService : BaseService, ICaixaService
         caixa.ValorReceita = await SomarReceitaPorCompetencia(caixa.Competencia);
         caixa.ValorTotal = valorTotal;
         await _caixaRepository.Atualizar(caixa);
+        await _unitOfWork.Commit();
 
         return true;
     }
