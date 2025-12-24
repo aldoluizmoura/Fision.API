@@ -52,7 +52,7 @@ public class MovimentoFinanceiroController : BaseController
         return movimentosFinanceirosViewModel;
     }
 
-    [HttpPost("adicionarMensalidade-movimentoEntidade")]
+    [HttpPost("adicionar-mensalidade-movimento-entidade")]
     public async Task<ActionResult<MovimentoFinanceiroViewModel>> AdicionarMensalidade(MovimentoFinanceiroViewModel movimentoViewModel)
     {
         if (!ModelState.IsValid)
@@ -67,7 +67,7 @@ public class MovimentoFinanceiroController : BaseController
         return CustomResponse(movimentoViewModel);
     }
 
-    [HttpPost("adicionarValorProfissional-movimentoEntidade")]
+    [HttpPost("adicionar-valor-profissional-movimento-entidade")]
     public async Task<ActionResult<MovimentoFinanceiroViewModel>> AdicionarValorProfissional(MovimentoFinanceiroViewModel movimentoViewModel)
     {
         if (!ModelState.IsValid)

@@ -71,7 +71,7 @@ public class MovimentoFinanceiroService : BaseService, IMovimentoFinanceiroServi
 
         var profissional = CriarValorProfissional(movimento, contratoFinanceiro);
 
-        await _movimentoRepository.Adicionar(movimento);
+        await _movimentoRepository.Adicionar(profissional);
         return true;
     }
 
@@ -131,7 +131,7 @@ public class MovimentoFinanceiroService : BaseService, IMovimentoFinanceiroServi
 
     private string DefinirCompetenciaPagamento()
     {
-        return DateTime.Now.ToString("yyyyMM");
+        return DateTime.Now.ToString("MMyyyy");
     }
 
     private async Task<bool> ExisteCompetencia(MovimentoFinanceiroEntidade movimento)
