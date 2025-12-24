@@ -76,7 +76,6 @@ public class MovimentoFinanceiroController : BaseController
         }
 
         var movimento = _mapper.Map<MovimentoFinanceiroEntidade>(movimentoViewModel);
-
         await _movimentoService.AdicionarValorProfissional(movimento);
 
         return CustomResponse(movimentoViewModel);
@@ -91,7 +90,6 @@ public class MovimentoFinanceiroController : BaseController
         }
 
         var movimento = _mapper.Map<MovimentoFinanceiroAvulso>(movimentoViewModel);
-
         await _movimentoAvulsoService.AdicionarMovimentoFinanceiroAvulso(movimento);
 
         return CustomResponse(movimentoViewModel);

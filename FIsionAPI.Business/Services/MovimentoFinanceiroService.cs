@@ -84,7 +84,7 @@ public class MovimentoFinanceiroService : BaseService, IMovimentoFinanceiroServi
         }
 
         if (!VerificarCondicoesQuitacao(movimento))
-        {
+        {            
             return false;
         }
 
@@ -105,8 +105,7 @@ public class MovimentoFinanceiroService : BaseService, IMovimentoFinanceiroServi
         }
 
         if (!VerificarCondicoesDesquitacao(movimento))
-        {
-            Notificar("Não é possível desquitar esse movimento!");
+        {            
             return false;
         }
 

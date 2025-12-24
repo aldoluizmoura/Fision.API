@@ -109,7 +109,6 @@ public class EntidadeController : BaseController
         }
 
         var enderecoPessoa = _mapper.Map<EnderecoPessoa>(enderecoViewModel);
-
         await _entidadeService.AtualizarEndereco(enderecoPessoa);
 
         return CustomResponse(enderecoViewModel);
@@ -130,7 +129,6 @@ public class EntidadeController : BaseController
         }
 
         var contratoFinanceiro = _mapper.Map<ContratoFinanceiro>(contratoViewModel);
-
         await _entidadeService.AtualizarContratoFinanceiro(contratoFinanceiro);
 
         return CustomResponse(contratoViewModel);
