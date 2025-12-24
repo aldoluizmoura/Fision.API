@@ -1,36 +1,40 @@
 {
   "format": 1,
   "restore": {
-    "C:\\dev\\Fision\\GestaoFluxoFinanceiro.API\\FIsionAPI\\FIsionAPI.API\\FIsionAPI.API.csproj": {}
+    "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.API\\FIsionAPI.API.csproj": {}
   },
   "projects": {
-    "C:\\dev\\Fision\\GestaoFluxoFinanceiro.API\\FIsionAPI\\FIsionAPI.API\\FIsionAPI.API.csproj": {
+    "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.API\\FIsionAPI.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\dev\\Fision\\GestaoFluxoFinanceiro.API\\FIsionAPI\\FIsionAPI.API\\FIsionAPI.API.csproj",
+        "projectUniqueName": "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.API\\FIsionAPI.API.csproj",
         "projectName": "FIsionAPI.API",
-        "projectPath": "C:\\dev\\Fision\\GestaoFluxoFinanceiro.API\\FIsionAPI\\FIsionAPI.API\\FIsionAPI.API.csproj",
+        "projectPath": "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.API\\FIsionAPI.API.csproj",
         "packagesPath": "C:\\Users\\aldol\\.nuget\\packages\\",
-        "outputPath": "C:\\dev\\Fision\\GestaoFluxoFinanceiro.API\\FIsionAPI\\FIsionAPI.API\\obj\\",
+        "outputPath": "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.API\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
           "C:\\Users\\aldol\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packagesource": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\dev\\Fision\\GestaoFluxoFinanceiro.API\\FIsionAPI\\FIsionAPI.Data\\FIsionAPI.Data.csproj": {
-                "projectPath": "C:\\dev\\Fision\\GestaoFluxoFinanceiro.API\\FIsionAPI\\FIsionAPI.Data\\FIsionAPI.Data.csproj"
+              "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Data\\FIsionAPI.Data.csproj": {
+                "projectPath": "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Data\\FIsionAPI.Data.csproj"
               }
             }
           }
@@ -39,15 +43,21 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
-              "version": "[8.1.0, )"
+              "version": "[12.0.0, )"
             },
             "Microsoft.AspNetCore.Mvc.Versioning": {
               "target": "Package",
@@ -55,7 +65,7 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.4, )"
+              "version": "[8.0.22, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -65,11 +75,11 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.4, )"
+              "version": "[10.0.1, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[5.6.3, )"
+              "version": "[10.1.0, )"
             }
           },
           "imports": [
@@ -78,10 +88,29 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.22, 8.0.22]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[8.0.22, 8.0.22]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.22, 8.0.22]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.22, 8.0.22]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -90,34 +119,38 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.307/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\dev\\Fision\\GestaoFluxoFinanceiro.API\\FIsionAPI\\FIsionAPI.Business\\FIsionAPI.Business.csproj": {
+    "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Business\\FIsionAPI.Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\dev\\Fision\\GestaoFluxoFinanceiro.API\\FIsionAPI\\FIsionAPI.Business\\FIsionAPI.Business.csproj",
+        "projectUniqueName": "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Business\\FIsionAPI.Business.csproj",
         "projectName": "FIsionAPI.Business",
-        "projectPath": "C:\\dev\\Fision\\GestaoFluxoFinanceiro.API\\FIsionAPI\\FIsionAPI.Business\\FIsionAPI.Business.csproj",
+        "projectPath": "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Business\\FIsionAPI.Business.csproj",
         "packagesPath": "C:\\Users\\aldol\\.nuget\\packages\\",
-        "outputPath": "C:\\dev\\Fision\\GestaoFluxoFinanceiro.API\\FIsionAPI\\FIsionAPI.Business\\obj\\",
+        "outputPath": "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Business\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
           "C:\\Users\\aldol\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packagesource": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -125,15 +158,29 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
             "FluentValidation": {
               "target": "Package",
-              "version": "[9.5.3, )"
+              "version": "[12.1.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.22, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -145,7 +192,7 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.4, )"
+              "version": "[10.0.1, )"
             }
           },
           "imports": [
@@ -154,46 +201,65 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.22, 8.0.22]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.22, 8.0.22]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.22, 8.0.22]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.307/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\dev\\Fision\\GestaoFluxoFinanceiro.API\\FIsionAPI\\FIsionAPI.Data\\FIsionAPI.Data.csproj": {
+    "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Data\\FIsionAPI.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\dev\\Fision\\GestaoFluxoFinanceiro.API\\FIsionAPI\\FIsionAPI.Data\\FIsionAPI.Data.csproj",
+        "projectUniqueName": "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Data\\FIsionAPI.Data.csproj",
         "projectName": "FIsionAPI.Data",
-        "projectPath": "C:\\dev\\Fision\\GestaoFluxoFinanceiro.API\\FIsionAPI\\FIsionAPI.Data\\FIsionAPI.Data.csproj",
+        "projectPath": "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Data\\FIsionAPI.Data.csproj",
         "packagesPath": "C:\\Users\\aldol\\.nuget\\packages\\",
-        "outputPath": "C:\\dev\\Fision\\GestaoFluxoFinanceiro.API\\FIsionAPI\\FIsionAPI.Data\\obj\\",
+        "outputPath": "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Data\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
           "C:\\Users\\aldol\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packagesource": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\dev\\Fision\\GestaoFluxoFinanceiro.API\\FIsionAPI\\FIsionAPI.Business\\FIsionAPI.Business.csproj": {
-                "projectPath": "C:\\dev\\Fision\\GestaoFluxoFinanceiro.API\\FIsionAPI\\FIsionAPI.Business\\FIsionAPI.Business.csproj"
+              "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Business\\FIsionAPI.Business.csproj": {
+                "projectPath": "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Business\\FIsionAPI.Business.csproj"
               }
             }
           }
@@ -202,15 +268,25 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.4, )"
+              "version": "[8.0.22, )"
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
@@ -219,6 +295,12 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.1, )"
             }
           },
           "imports": [
@@ -227,16 +309,31 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.22, 8.0.22]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.22, 8.0.22]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.22, 8.0.22]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.307/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

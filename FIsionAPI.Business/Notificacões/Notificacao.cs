@@ -1,12 +1,10 @@
-﻿namespace FIsionAPI.Business.Notificacões
+﻿namespace FIsionAPI.Business.Notificacões;
+
+public class Notificacao
 {
-    public class Notificacao
+    public string Mensagem { get; set; }
+    public Notificacao(string mensagem)
     {
-        public string Mensagem { get; set; }
-        public Notificacao(string mensagem)
-        {
-            Mensagem = mensagem;
-        }
-       
+        Mensagem = mensagem;
     }
 }
