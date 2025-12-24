@@ -8,20 +8,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FIsionAPI.Data.Repositorios
+namespace FIsionAPI.Data.Repositorios;
+
+public class EntidadeRepository : Repository<Entidade>, IEntidadeRepository
 {
-    public class EntidadeRepository : Repository<Entidade>, IEntidadeRepository
+    public EntidadeRepository(FisionContext contexto) : base (contexto){ }
+
+    public async Task<IEnumerable<Entidade>> ObterPorClasse(ClasseEntidade CodClasse)
     {
-        public EntidadeRepository(FisionContext contexto) : base (contexto){ }
-
-        public async Task<IEnumerable<Entidade>> ObterPorClasse(ClasseEntidade CodClasse)
-        {
-            return await Db.Entidades.AsNoTracking().Where(e => e.Classe == CodClasse).ToListAsync();
-        }
-
-        public async Task<Entidade> ObterPorEntidadeId(Guid Id)
-        {
-            return await Db.Entidades.AsNoTracking().FirstOrDefaultAsync(e => e.Id == Id);
-        }        
+        return await Db.Entidades.AsNoTracking().Where(e => e.Classe == CodClasse).ToListAsync();
     }
+
+    public async Task<Entidade> ObterPorEntidadeId(Guid Id)
+    {
+        return await Db.Entidades.AsNoTracking().FirstOrDefaultAsync(e => e.Id == Id);
+    }        
 }

@@ -11,6 +11,8 @@ public class EnderecoPessoa : Entity
     public string Cidade { get; set; }
     public string Estado { get; set; }
     public string Complemento { get; set; }
+    public DateTime DataCadastro { get; set; }
+    public DateTime DataAtualizacao { get; set; }
     public Guid PessoaId { get; set; }
     public Pessoa Pessoa { get; set; }
 

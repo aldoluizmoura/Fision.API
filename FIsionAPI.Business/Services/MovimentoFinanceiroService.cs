@@ -10,13 +10,16 @@ public class MovimentoFinanceiroService : BaseService, IMovimentoFinanceiroServi
 {
     private readonly IMovimentoFinanceiroRepository _movimentoRepository;
     private readonly IContratoFinanceiroRepository _contratoRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
     public MovimentoFinanceiroService(INotificador notificador,
                                       IContratoFinanceiroRepository contratoRepository,
-                                      IMovimentoFinanceiroRepository movimentoRepository) : base(notificador)
+                                      IMovimentoFinanceiroRepository movimentoRepository,
+                                      IUnitOfWork unitOfWork) : base(notificador)
     {
         _movimentoRepository = movimentoRepository;
         _contratoRepository = contratoRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<bool> AdicionarMensalidade(MovimentoFinanceiroEntidade movimento)
@@ -44,6 +47,7 @@ public class MovimentoFinanceiroService : BaseService, IMovimentoFinanceiroServi
         var mensalidade = CriarMensalidade(movimento, contratoFinanceiro);
 
         await _movimentoRepository.Adicionar(mensalidade);
+        await _unitOfWork.Commit();
         return true;
     }
 
@@ -72,6 +76,7 @@ public class MovimentoFinanceiroService : BaseService, IMovimentoFinanceiroServi
         var profissional = CriarValorProfissional(movimento, contratoFinanceiro);
 
         await _movimentoRepository.Adicionar(profissional);
+        await _unitOfWork.Commit();
         return true;
     }
 
@@ -84,13 +89,14 @@ public class MovimentoFinanceiroService : BaseService, IMovimentoFinanceiroServi
         }
 
         if (!VerificarCondicoesQuitacao(movimento))
-        {            
+        {
             return false;
         }
 
         DefinirQuitacao(movimento);
 
         await _movimentoRepository.Atualizar(movimento);
+        await _unitOfWork.Commit();
         return true;
     }
 
@@ -105,13 +111,14 @@ public class MovimentoFinanceiroService : BaseService, IMovimentoFinanceiroServi
         }
 
         if (!VerificarCondicoesDesquitacao(movimento))
-        {            
+        {
             return false;
         }
 
         Reabrir(movimento);
 
         await _movimentoRepository.Atualizar(movimento);
+        await _unitOfWork.Commit();
         return true;
     }
 
@@ -126,6 +133,7 @@ public class MovimentoFinanceiroService : BaseService, IMovimentoFinanceiroServi
         }
 
         await _movimentoRepository.Remover(Id);
+        await _unitOfWork.Commit();
         return true;
     }
 
@@ -154,9 +162,13 @@ public class MovimentoFinanceiroService : BaseService, IMovimentoFinanceiroServi
         movimento.CompetenciaPagamento = string.Empty;
     }
 
-    private string DefinirDataVencimento(MovimentoFinanceiroEntidade movimento, ContratoFinanceiro contratoFinanceiro)
+    private DateTime DefinirDataVencimento(MovimentoFinanceiroEntidade movimento, ContratoFinanceiro contratoFinanceiro)
     {
-        return contratoFinanceiro.Vencimento + "/" + movimento.CompetenciaMensalidade.Substring(0, 2) + "/" + DateTime.Now.Year;
+        var mes = int.Parse(movimento.CompetenciaMensalidade.Substring(0, 2));
+        var ano = int.Parse(movimento.CompetenciaMensalidade.Substring(3, 4));
+        var dia = int.Parse(contratoFinanceiro.Vencimento);
+
+        return new DateTime(ano, mes, dia);
     }
 
     private async Task<ContratoFinanceiro> ObterContrato(MovimentoFinanceiroEntidade movimento)
@@ -190,7 +202,7 @@ public class MovimentoFinanceiroService : BaseService, IMovimentoFinanceiroServi
         var valorReceber = ((contratoFinanceiro.ValorUnitario * contratoFinanceiro.Quantidade) * (contratoFinanceiro.MargemLucro) / 100);
         var valorMensal = contratoFinanceiro.Quantidade * contratoFinanceiro.ValorUnitario;
 
-        var dataVencimento = DateTime.Parse(DefinirDataVencimento(movimento, contratoFinanceiro));
+        var dataVencimento = DefinirDataVencimento(movimento, contratoFinanceiro);
 
         return new MovimentoFinanceiroEntidade(
             ClasseMovimento.Profissional,
@@ -212,7 +224,7 @@ public class MovimentoFinanceiroService : BaseService, IMovimentoFinanceiroServi
         var desconto = contratoFinanceiro.ValorMensal * contratoFinanceiro.Desconto / 100;
         var valorReceber = contratoFinanceiro.ValorMensal - desconto;
 
-        var dataVencimento = DateTime.Parse(DefinirDataVencimento(movimento, contratoFinanceiro));
+        var dataVencimento = DefinirDataVencimento(movimento, contratoFinanceiro);
 
         return new MovimentoFinanceiroEntidade(
             ClasseMovimento.Aluno,

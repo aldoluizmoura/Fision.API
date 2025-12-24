@@ -16,5 +16,6 @@ public class Entidade : Entity
     public IEnumerable<Especialidades>? Especialidades { get; set; }
     public Guid? EspecialidadeId { get; set; }
     public DateTime DataCadastro { get; set; }
+    public DateTime DataAtualizacao { get; set; }
 
 }

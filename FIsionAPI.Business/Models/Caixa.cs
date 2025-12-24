@@ -13,6 +13,7 @@ public class Caixa : Entity
     public SituacaoCaixa Situacao { get; set; }
     public StatusCaixa Status { get; set; }
     public DateTime DataCadastro { get; set; }
+    public DateTime DataAtualizacao { get; set; }
     public IEnumerable<MovimentoFinanceiroEntidade> Movimentos { get; set; }
     public IEnumerable<MovimentoFinanceiroAvulso> MovimentosAvulsos { get; set; }
 }
