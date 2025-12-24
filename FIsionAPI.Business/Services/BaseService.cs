@@ -58,7 +58,6 @@ public class BaseService
 
     protected bool VerificarCondicoesDesquitacao(MovimentoFinanceiroEntidade movimento)
     {
-       
         if (movimento.Situacao == Models.Enums.SituacaoMovimento.Aberto)
         {
             Notificar("O Movimento já está aberto!");
@@ -85,6 +84,7 @@ public class BaseService
             }
             else return true;
         }
+
         return true;
     }
 
@@ -92,12 +92,9 @@ public class BaseService
     {
         if (movimento.Classe == Models.Enums.ClasseMovimento.Aluno)
         {
-           return movimento.ValorReceber = (contrato.ValorMensal) - (contrato.ValorMensal * (contrato.Desconto) / 100);               
+            return movimento.ValorReceber = (contrato.ValorMensal) - (contrato.ValorMensal * (contrato.Desconto) / 100);
         }
 
-        if (movimento.Classe == Models.Enums.ClasseMovimento.Profissional)
-        {
-           return movimento.ValorReceber = ((contrato.ValorUnitario * contrato.Quantidade) * (contrato.MargemLucro) / 100);                 
-        }        
+        return movimento.ValorReceber = ((contrato.ValorUnitario * contrato.Quantidade) * (contrato.MargemLucro) / 100);
     }
 }

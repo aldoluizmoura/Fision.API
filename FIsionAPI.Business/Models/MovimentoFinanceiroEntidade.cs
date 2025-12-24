@@ -40,7 +40,6 @@ public class MovimentoFinanceiroEntidade : Entity
         int? quantidadeAlunos = null,
         string observacao = "")
     {
-        CompetenciaPagamento = competenciaPagamento;
         Observacao = observacao;
         Classe = classe;
         ValorReceber = valorReceber;
