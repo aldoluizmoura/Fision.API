@@ -29,33 +29,32 @@ public class MovimentoFinanceiroEntidade : Entity
         decimal? valorReceber,
         decimal? valorPago,
         decimal? valorMensal,
-        decimal? desconto, 
-        SituacaoMovimento situacao,        
+        decimal? desconto,
+        SituacaoMovimento situacao,
         DateTime dataVencimento,
         DateTime dataCadastro,
-        Guid contratoId,        
+        Guid contratoId,
         TipoMovimento tipo,
         string competenciaMensalidade = "",
         string competenciaPagamento = "",
         int? quantidadeAlunos = null,
-        string observacao = "")        
+        string observacao = "")
     {
-        CompetenciaMensalidade = competenciaMensalidade;
         CompetenciaPagamento = competenciaPagamento;
         Observacao = observacao;
         Classe = classe;
-        ValorReceber = valorReceber ?? throw new ArgumentNullException(nameof(valorReceber));
-        ValorPago = valorPago ?? throw new ArgumentNullException(nameof(valorPago));
-        ValorMensal = valorMensal ?? throw new ArgumentNullException(nameof(valorMensal));
-        Desconto = desconto ?? throw new ArgumentNullException(nameof(desconto));        
-        Situacao = situacao;        
+        ValorReceber = valorReceber;
+        ValorPago = valorPago;
+        ValorMensal = valorMensal;
+        Desconto = desconto;
+        Situacao = situacao;
         DataVencimento = dataVencimento;
         CompetenciaMensalidade = competenciaMensalidade;
         CompetenciaPagamento = competenciaPagamento;
-        QuantidadeAlunos = quantidadeAlunos ?? throw new ArgumentNullException(nameof(quantidadeAlunos));
+        QuantidadeAlunos = quantidadeAlunos;
         Observacao = observacao;
         DataCadastro = dataCadastro;
-        ContratoId = contratoId;        
+        ContratoId = contratoId;
         Tipo = tipo;
     }
 }
