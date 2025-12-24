@@ -132,7 +132,7 @@ public class MovimentoFinanceiroService : BaseService, IMovimentoFinanceiroServi
 
     private string DefinirCompetenciaPagamento()
     {
-        return DateTime.Now.ToString("yyyyMM");
+        return DateTime.Now.ToString("MMyyyy");
     }
 
     private async Task<bool> ExisteCompetencia(MovimentoFinanceiroEntidade movimento)
