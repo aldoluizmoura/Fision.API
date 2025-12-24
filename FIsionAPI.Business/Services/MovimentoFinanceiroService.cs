@@ -71,7 +71,7 @@ public class MovimentoFinanceiroService : BaseService, IMovimentoFinanceiroServi
 
         var profissional = CriarValorProfissional(movimento, contratoFinanceiro);
 
-        await _movimentoRepository.Adicionar(movimento);
+        await _movimentoRepository.Adicionar(profissional);
         return true;
     }
 
