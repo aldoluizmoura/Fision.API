@@ -95,7 +95,7 @@ public class BaseService
            return movimento.ValorReceber = (contrato.ValorMensal) - (contrato.ValorMensal * (contrato.Desconto) / 100);               
         }
 
-        if (movimento.Classe == Models.Enums.ClasseMovimento.Aluno)
+        if (movimento.Classe == Models.Enums.ClasseMovimento.Profissional)
         {
            return movimento.ValorReceber = ((contrato.ValorUnitario * contrato.Quantidade) * (contrato.MargemLucro) / 100);                 
         }        
