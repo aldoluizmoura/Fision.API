@@ -2,14 +2,13 @@
 using System;
 using System.Threading.Tasks;
 
-namespace FIsionAPI.Business.Interfaces
+namespace FIsionAPI.Business.Interfaces;
+
+public interface IMovimentoFinanceiroService : IDisposable
 {
-    public interface IMovimentoFinanceiroService : IDisposable
-    {
-        Task<bool> AdicionarMensalidade(MovimentoFinanceiroEntidade movimento);
-        Task<bool> AdicionarValorProfissional(MovimentoFinanceiroEntidade movimento);
-        Task<bool> Quitar(Guid id);
-        Task<bool> desquitar(Guid id);
-        Task<bool> Remover(Guid Id);
-    }
+    Task<bool> AdicionarMensalidade(MovimentoFinanceiroEntidade movimento);
+    Task<bool> AdicionarValorProfissional(MovimentoFinanceiroEntidade movimento);
+    Task<bool> QuitarMensalidade(MovimentoFinanceiroEntidade movimento);    
+    Task<bool> Desquitar(Guid id);
+    Task<bool> Remover(Guid Id);
 }

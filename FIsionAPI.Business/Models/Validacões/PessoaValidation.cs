@@ -11,7 +11,7 @@ namespace FIsionAPI.Business.Models.Validacões
         {
             RuleFor(p => p.CPF).NotEmpty().WithMessage("O campo {PropertyName} precisa ser fornecido");
             RuleFor(p => p.Nome).NotEmpty().WithMessage("O campo {PropertyName} precisa ser fornecido");
-            RuleFor(p => p.DtNascimento).NotEmpty().WithMessage("O campo {PropertyName} precisa ser fornecido");            
+            RuleFor(p => p.DataNascimento).NotEmpty().WithMessage("O campo {PropertyName} precisa ser fornecido");            
             RuleFor(p => p.Sexo).NotEmpty().WithMessage("O campo {PropertyName} precisa ser fornecido");
             RuleFor(p => p.Endereco).NotEmpty().WithMessage("O campo {PropertyName} precisa ser fornecido");        }
     }
