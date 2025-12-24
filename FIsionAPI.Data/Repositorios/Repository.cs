@@ -20,20 +20,20 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity, 
         Db = contexto;
         Dbset = contexto.Set<TEntity>();
     }
-   
-    public async Task<IEnumerable<TEntity>> Buscar(Expression<Func<TEntity, bool>> predicate)
+
+    public async Task<List<TEntity>> Buscar(Expression<Func<TEntity, bool>> predicate)
     {
         return await Dbset.AsNoTracking().Where(predicate).ToListAsync();
     }
-    
+
     public async Task<TEntity> ObterPorId(Guid id)
     {
-        return await Dbset.FindAsync(id);
+        return await Dbset.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task<List<TEntity>> ObterTodos()
     {
-        return await Dbset.ToListAsync();
+        return await Dbset.AsNoTracking().ToListAsync();
     }
 
     public Task Adicionar(TEntity entity)
@@ -50,7 +50,7 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity, 
 
     public Task Remover(Guid id)
     {
-        Dbset.Remove(new TEntity { Id = id});
+        Dbset.Remove(new TEntity { Id = id });
         return Task.CompletedTask;
     }
 

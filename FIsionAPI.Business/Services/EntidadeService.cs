@@ -2,7 +2,6 @@
 using FIsionAPI.Business.Models;
 using FIsionAPI.Business.Models.Enums;
 using FIsionAPI.Business.Models.Validacões;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,7 +67,6 @@ public class EntidadeService : BaseService, IEntidadeService
         }
 
         await _entidadeRepository.Atualizar(entidade);
-
         await _unitOfWork.Commit();
 
         return true;
@@ -163,12 +161,12 @@ public class EntidadeService : BaseService, IEntidadeService
 
     public async Task<IEnumerable<Entidade>> BuscarPorClasse(ClasseEntidade classe)
     {
-        if (classe == Models.Enums.ClasseEntidade.Aluno)
+        if (classe == ClasseEntidade.Aluno)
         {
-            return await _entidadeRepository.ObterPorClasse(Models.Enums.ClasseEntidade.Aluno);
+            return await _entidadeRepository.ObterPorClasse(ClasseEntidade.Aluno);
         }
 
-        return await _entidadeRepository.ObterPorClasse(Models.Enums.ClasseEntidade.Profissional);
+        return await _entidadeRepository.ObterPorClasse(ClasseEntidade.Profissional);
     }
 
     public void Dispose()
@@ -177,6 +175,7 @@ public class EntidadeService : BaseService, IEntidadeService
         _entidadeRepository?.Dispose();
         _contratoRepository?.Dispose();
         _enderecoRepository?.Dispose();
+        _unitOfWork?.Dispose();
     }
 
 }

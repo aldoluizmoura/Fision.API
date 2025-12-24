@@ -41,8 +41,13 @@ namespace FIsionAPI.Data.Contexto
             {
                 if (entry.State == EntityState.Added)
                 {
-                    entry.Property("DataCadastro").CurrentValue = DateTime.Now;
+                    entry.Property("DataCadastro").CurrentValue = DateTime.UtcNow;
                 }
+
+                if (entry.State == EntityState.Modified)
+                {
+                    entry.Property("DataAtualizacao").CurrentValue = DateTime.UtcNow;
+                }                
 
                 if (entry.State == EntityState.Modified)
                 {

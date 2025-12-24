@@ -12,6 +12,7 @@ public class Pessoa : Entity
     public string Telefone { get; set; }
     public string Email { get; set; }
     public DateTime DataCadastro { get; set; }
+    public DateTime DataAtualizacao { get; set; }
     public EnderecoPessoa Endereco { get; set; }
     public IEnumerable<Entidade> Entidades { get; set; }
 }

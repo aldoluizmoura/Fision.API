@@ -11,7 +11,7 @@ public class UnitOfWork : IUnitOfWork
     public UnitOfWork(FisionContext context)
     {
         _context = context;
-    }
+    }    
 
     public async Task<bool> Commit()
     {
@@ -21,5 +21,5 @@ public class UnitOfWork : IUnitOfWork
     public void Dispose()
     {
         _context?.Dispose();
-    }
+    }    
 }

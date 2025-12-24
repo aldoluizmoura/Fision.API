@@ -38,7 +38,7 @@ public class CaixaService : BaseService, ICaixaService
         var receitaTotal = await SomarReceitaPorCompetencia(caixa.Competencia);
         var despesaTotal = await SomarDespesasPorCompetencia(caixa.Competencia);
 
-        caixa.Situacao = Models.Enums.SituacaoCaixa.Aberto;
+        caixa.Situacao = SituacaoCaixa.Aberto;
         caixa.Status = await VerificarStatus(caixa.Competencia);
         caixa.ValorDespesa = despesaTotal;
         caixa.ValorReceita = receitaTotal;
@@ -52,7 +52,7 @@ public class CaixaService : BaseService, ICaixaService
 
     public async Task<bool> Remover(Caixa caixa)
     {
-        if (caixa.Situacao == Models.Enums.SituacaoCaixa.Fechado)
+        if (caixa.Situacao == SituacaoCaixa.Fechado)
         {
             Notificar("Um Caixa fechado não pode ser excluído!");
             return false;
@@ -66,13 +66,13 @@ public class CaixaService : BaseService, ICaixaService
 
     public async Task<bool> FecharCaixa(Caixa caixa)
     {
-        if (caixa.Situacao == Models.Enums.SituacaoCaixa.Fechado)
+        if (caixa.Situacao == SituacaoCaixa.Fechado)
         {
             Notificar("O caixa já está fechado!");
             return false;
         }
 
-        caixa.Situacao = Models.Enums.SituacaoCaixa.Fechado;
+        caixa.Situacao = SituacaoCaixa.Fechado;
         await _caixaRepository.Atualizar(caixa);
         await _unitOfWork.Commit();
 
@@ -81,7 +81,7 @@ public class CaixaService : BaseService, ICaixaService
 
     public async Task<bool> ReabrirCaixa(Caixa caixa)
     {
-        if (caixa.Situacao == Models.Enums.SituacaoCaixa.Aberto)
+        if (caixa.Situacao == SituacaoCaixa.Aberto)
         {
             Notificar("O caixa já está aberto!");
             return false;
@@ -89,7 +89,7 @@ public class CaixaService : BaseService, ICaixaService
 
         var valorTotal = await CalcularValorTotal(caixa.Competencia);
 
-        caixa.Situacao = Models.Enums.SituacaoCaixa.Aberto;
+        caixa.Situacao = SituacaoCaixa.Aberto;
         caixa.Status = await VerificarStatus(caixa.Competencia);
         caixa.ValorDespesa = await SomarDespesasPorCompetencia(caixa.Competencia);
         caixa.ValorReceita = await SomarReceitaPorCompetencia(caixa.Competencia);
@@ -112,7 +112,7 @@ public class CaixaService : BaseService, ICaixaService
 
     private async Task<decimal> SomarDespesasPorCompetencia(string competencia)
     {
-        var listaDespesaCompetencia = await _movimentoAvulsoRepositoy.ObterMovimentoPorTipoCompetencia(Models.Enums.TipoMovimento.Despesa, competencia);
+        var listaDespesaCompetencia = await _movimentoAvulsoRepositoy.ObterMovimentoPorTipoCompetencia(TipoMovimento.Despesa, competencia);
 
         return listaDespesaCompetencia.Sum(m => m.ValorTotal);
     }
