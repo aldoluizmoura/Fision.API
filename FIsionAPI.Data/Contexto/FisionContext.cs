@@ -9,7 +9,7 @@ namespace FIsionAPI.Data.Contexto
 {
     public class FisionContext : DbContext
     {
-        public FisionContext(DbContextOptions options):base(options)
+        public FisionContext(DbContextOptions options) : base(options)
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
             ChangeTracker.AutoDetectChangesEnabled = false;
@@ -21,7 +21,7 @@ namespace FIsionAPI.Data.Contexto
         public DbSet<ContratoFinanceiro> Contratos { get; set; }
         public DbSet<MovimentoFinanceiroEntidade> Movimentos { get; set; }
         public DbSet<MovimentoFinanceiroAvulso> MovimentoAvulso { get; set; }
-        public DbSet<Caixa> Caixas{ get; set; }
+        public DbSet<Caixa> Caixas { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             foreach (var property in modelBuilder.Model.GetEntityTypes()
@@ -47,12 +47,9 @@ namespace FIsionAPI.Data.Contexto
                 if (entry.State == EntityState.Modified)
                 {
                     entry.Property("DataAtualizacao").CurrentValue = DateTime.UtcNow;
-                }                
-
-                if (entry.State == EntityState.Modified)
-                {
                     entry.Property("DataCadastro").IsModified = false;
                 }
+
             }
 
             return base.SaveChangesAsync(cancellationToken);

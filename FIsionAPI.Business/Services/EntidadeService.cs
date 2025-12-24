@@ -76,7 +76,7 @@ public class EntidadeService : BaseService, IEntidadeService
     {
         if (contrato == null)
         {
-            Notificar("Objeto não encontrato");
+            Notificar("Objeto não encontrado");
             return;
         }
 
@@ -88,7 +88,7 @@ public class EntidadeService : BaseService, IEntidadeService
     {
         if (endereco == null)
         {
-            Notificar("Objeto não encontrato");
+            Notificar("Objeto não encontrado");
             return;
         }
 
@@ -100,7 +100,7 @@ public class EntidadeService : BaseService, IEntidadeService
     {
         if (pessoa == null)
         {
-            Notificar("Objeto não encontrato");
+            Notificar("Objeto não encontrado");
             return;
         }
 
@@ -148,11 +148,17 @@ public class EntidadeService : BaseService, IEntidadeService
             await _enderecoRepository.Remover(endereco.Id);
         }
 
-        await _contratoRepository.Remover(contrato.Id);
+        if (contrato != null)
+        {
+            await _contratoRepository.Remover(contrato.Id);
+        }            
 
         await _entidadeRepository.Remover(entidade.Id);
 
-        await _pessoaRepository.Remover(pessoa.Id);
+        if (pessoa != null)
+        {
+            await _pessoaRepository.Remover(pessoa.Id);
+        }
 
         await _unitOfWork.Commit();
 

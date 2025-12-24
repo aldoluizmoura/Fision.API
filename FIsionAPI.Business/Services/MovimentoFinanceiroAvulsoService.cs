@@ -21,7 +21,7 @@ public class MovimentoFinanceiroAvulsoService : BaseService, IMovimentoFinanceir
 
     public async Task<bool> AdicionarMovimentoFinanceiroAvulso(MovimentoFinanceiroAvulso movimentoAvulso)
     {
-        if (movimentoAvulso.ValidarMovimentoFinanceiro(out string erro))
+        if (!movimentoAvulso.ValidarMovimentoFinanceiro(out string erro))
         {
             Notificar(erro);
             return false;
@@ -44,7 +44,7 @@ public class MovimentoFinanceiroAvulsoService : BaseService, IMovimentoFinanceir
 
     public async Task<bool> AtualizarMovimentoFinanceiroAvulso(MovimentoFinanceiroAvulso movimento)
     {
-        if (movimento.ValidarMovimentoFinanceiro(out string erro))
+        if (!movimento.ValidarMovimentoFinanceiro(out string erro))
         {
             Notificar(erro);
             return false;
