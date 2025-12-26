@@ -27,7 +27,6 @@ public class MovimentoFinanceiroEntidade : Entity
 
     public MovimentoFinanceiroEntidade()
     {
-        
     }
 
     public MovimentoFinanceiroEntidade(
