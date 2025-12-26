@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FIsionAPI.Data.Migrations
 {
-    public partial class ajustemovimentos : Migration
+    public partial class AjusteMovimentos : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

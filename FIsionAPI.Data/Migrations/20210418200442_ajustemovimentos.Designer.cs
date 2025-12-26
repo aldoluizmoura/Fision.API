@@ -11,7 +11,7 @@ namespace FIsionAPI.Data.Migrations
 {
     [DbContext(typeof(FisionContext))]
     [Migration("20210418200442_ajustemovimentos")]
-    partial class ajustemovimentos
+    partial class AjusteMovimentos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

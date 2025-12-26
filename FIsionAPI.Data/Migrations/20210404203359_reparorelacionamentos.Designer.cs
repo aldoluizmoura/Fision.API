@@ -11,7 +11,7 @@ namespace FIsionAPI.Data.Migrations
 {
     [DbContext(typeof(FisionContext))]
     [Migration("20210404203359_reparorelacionamentos")]
-    partial class reparorelacionamentos
+    partial class reparoRelacionamentos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
