@@ -17,5 +17,5 @@ public class EntidadeViewModel
     public DateTime DataCadastro { get; set; }
     public int Classe { get; set; }
     public Guid? EspecialidadeId { get; set; }
-    public IEnumerable<EspecialidadeViewModel>? Especialidades { get; set; }
+    public IEnumerable<EspecialidadeViewModel> Especialidades { get; set; }
 }

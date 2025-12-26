@@ -13,8 +13,8 @@ public class Entidade : Entity
     public Guid PessoaId { get; set; }
     public ClasseEntidade Classe { get; set; }
     public virtual ContratoFinanceiro Contrato { get; set; }
-    public IEnumerable<Especialidades>? Especialidades { get; set; }
-    public Guid? EspecialidadeId { get; set; }
+    public IEnumerable<Especialidades> Especialidades { get; set; }
+    public Guid? EspecialidadeId { get; set; } = Guid.Empty;
     public DateTime DataCadastro { get; set; }
     public DateTime DataAtualizacao { get; set; }
 

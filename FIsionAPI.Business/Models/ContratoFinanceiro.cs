@@ -10,7 +10,7 @@ public class ContratoFinanceiro : Entity
     public decimal? ValorMensal { get; set; }
     public decimal? ValorUnitario { get; set; }
     public string Vencimento { get; set; }
-    public int? Quantidade { get; set; }
+    public int Quantidade { get; set; }
     public decimal? Desconto { get; set; }
     public decimal? MargemLucro { get; set; }
     public DateTime DataCadastro { get; set; }

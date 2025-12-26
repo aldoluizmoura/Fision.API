@@ -17,13 +17,18 @@ public class MovimentoFinanceiroEntidade : Entity
     public DateTime DataVencimento { get; set; }
     public string CompetenciaMensalidade { get; set; }
     public string CompetenciaPagamento { get; set; }
-    public int? QuantidadeAlunos { get; set; }
+    public int QuantidadeAlunos { get; set; }
     public string Observacao { get; set; }
     public DateTime DataCadastro { get; set; }
     public Guid ContratoId { get; set; }
     public Caixa Caixa { get; set; }
     public virtual ContratoFinanceiro Contrato { get; set; }
     public TipoMovimento Tipo { get; set; }
+
+    public MovimentoFinanceiroEntidade()
+    {
+        
+    }
 
     public MovimentoFinanceiroEntidade(
         ClasseMovimento classe,
@@ -38,7 +43,7 @@ public class MovimentoFinanceiroEntidade : Entity
         TipoMovimento tipo,
         string competenciaMensalidade = "",
         string competenciaPagamento = "",
-        int? quantidadeAlunos = null,
+        int quantidadeAlunos = 0,
         string observacao = "")
     {
         Observacao = observacao;
