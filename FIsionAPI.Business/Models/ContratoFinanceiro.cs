@@ -6,7 +6,7 @@ namespace FIsionAPI.Business.Models;
 
 public class ContratoFinanceiro : Entity
 {
-    public TipoContrato Tipo { get; set; }
+    public TipoContrato TipoContrato { get; set; }
     public decimal? ValorMensal { get; set; }
     public decimal? ValorUnitario { get; set; }
     public string Vencimento { get; set; }

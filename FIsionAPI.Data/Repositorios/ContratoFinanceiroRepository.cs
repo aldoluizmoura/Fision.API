@@ -19,13 +19,13 @@ public class ContratoFinanceiroRepository : Repository<ContratoFinanceiro>, ICon
         return await Db.Contratos.Include(e=>e.Entidade).AsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
     }
 
-    public async Task<IEnumerable<ContratoFinanceiro>> ObterContratoPorTipo(TipoContrato CodTipo)
+    public async Task<IEnumerable<ContratoFinanceiro>> ObterContratoPorTipo(TipoContrato codTipo)
     {
-        return await Db.Contratos.AsNoTracking().Where(c => c.Tipo == CodTipo).ToListAsync();
+        return await Db.Contratos.AsNoTracking().Where(c => c.TipoContrato == codTipo).ToListAsync();
     }
 
-    public async Task<ContratoFinanceiro> ObterContratoEntidade(Guid EntidadeId)
+    public async Task<ContratoFinanceiro> ObterContratoEntidade(Guid entidadeId)
     {
-        return await Db.Contratos.AsNoTracking().FirstOrDefaultAsync(c => c.EntidadeId == EntidadeId);
+        return await Db.Contratos.AsNoTracking().FirstOrDefaultAsync(c => c.EntidadeId == entidadeId);
     }
 }
