@@ -29,7 +29,4 @@ public class AuthenticationDbContext(DbContextOptions options) : IdentityDbConte
         builder.Entity<IdentityUserToken<string>>()
             .ToTable("UsuariosTokens");
     }
-
 }
-
-
