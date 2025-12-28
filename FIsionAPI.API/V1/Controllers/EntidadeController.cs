@@ -99,7 +99,7 @@ public class EntidadeController : BaseController
     {
         if (id != enderecoViewModel.Id)
         {
-            NotificarErro("O id informado não é o mesmo que foi passado na query");
+            NotificarErro("Id inválido");
             return CustomResponse(enderecoViewModel);
         }
 
@@ -119,7 +119,7 @@ public class EntidadeController : BaseController
     {
         if (id != contratoViewModel.Id)
         {
-            NotificarErro("O id informado não é o mesmo que foi passado na query");
+            NotificarErro("Id inválido");
             return CustomResponse(contratoViewModel);
         }
 
@@ -139,7 +139,7 @@ public class EntidadeController : BaseController
     {
         if (id != pessoaViewModel.Id)
         {
-            NotificarErro("O id informado não é o mesmo que foi passado na query");
+            NotificarErro("Id inválido");
             return CustomResponse(pessoaViewModel);
         }
 

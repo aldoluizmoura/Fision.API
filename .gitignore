@@ -48,3 +48,7 @@ TestResults/
 
 ## Publish ##
 publish/
+FIsionAPI.API/appsettings.Development.json
+
+# App settings (ambiente local)
+appsettings.Development.json

@@ -1,3 +1,5 @@
+using FIsionAPI.API.Authentication.AuthenticationConfig;
+using FIsionAPI.API.Authentication.Models;
 using FIsionAPI.API.Configurations;
 using FIsionAPI.Data.Contexto;
 using Microsoft.AspNetCore.Builder;
@@ -24,6 +26,12 @@ public class Startup
         services.AddDbContext<FisionContext>(options =>
            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+        services.AddDbContext<AuthenticationDbContext>(options =>
+           options.UseSqlServer(Configuration.GetConnectionString("AuthenticationConnection")));
+
+        services.AddIdentityApiEndpoints<User>().AddEntityFrameworkStores<AuthenticationDbContext>();
+
+        services.AddAuthorization();
         services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "FIsionAPI.API", Version = "v1" });
@@ -37,8 +45,7 @@ public class Startup
         });
 
         services.AddAutoMapper(typeof(Startup));
-        services.AddControllers();
-        services.AddMvc();
+        services.AddControllers();        
         services.ResolveDependecies();
     }
 

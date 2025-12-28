@@ -10,7 +10,7 @@ namespace FIsionAPI.Business.Models.Validacões
         public ContratoFinanceiroValidation()
         {
           
-            RuleFor(c=>c.Tipo)
+            RuleFor(c=>c.TipoContrato)
                 .NotEmpty().WithMessage("O Campo {PropertyName} é Obrigatório");
         }
     }
