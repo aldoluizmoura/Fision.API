@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.IO;
 
 namespace FIsionAPI.API.Authentication;
@@ -10,17 +11,21 @@ public class AuthenticationDbContextFactory : IDesignTimeDbContextFactory<Authen
 {
     public AuthenticationDbContext CreateDbContext(string[] args)
     {
-        var config = new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.Development.json")
-                    .Build();
+        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")
+                          ?? "Development";
 
-        var connectionString = config.GetConnectionString("AuthenticationConnection");
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: false)
+            .AddJsonFile($"appsettings.{environment}.json", optional: true)
+            .AddEnvironmentVariables()
+            .Build();
 
-        var options = new DbContextOptionsBuilder<AuthenticationDbContext>()
-            .UseSqlServer(connectionString)
-            .Options;
+        var optionsBuilder = new DbContextOptionsBuilder<AuthenticationDbContext>();
 
-        return new AuthenticationDbContext(options);
+        optionsBuilder.UseSqlServer(
+            configuration.GetConnectionString("AuthenticationConnection"));
+
+        return new AuthenticationDbContext(optionsBuilder.Options);
     }
 }
