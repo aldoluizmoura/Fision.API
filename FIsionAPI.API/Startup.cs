@@ -29,10 +29,9 @@ public class Startup
         services.AddDbContext<AuthenticationDbContext>(options =>
            options.UseSqlServer(Configuration.GetConnectionString("AuthenticationConnection")));
 
-        services.AddAuthorization();
-
         services.AddIdentityApiEndpoints<User>().AddEntityFrameworkStores<AuthenticationDbContext>();
 
+        services.AddAuthorization();
         services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "FIsionAPI.API", Version = "v1" });
