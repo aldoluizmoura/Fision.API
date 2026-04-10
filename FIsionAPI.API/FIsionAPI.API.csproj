@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <UserSecretsId>fision-api-dev-7c2b4e9a-1d3f-4a8e-b5c6-9f0e1d2a3b4c</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

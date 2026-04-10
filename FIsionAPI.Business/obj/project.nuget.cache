@@ -1,32 +1,41 @@
 {
   "version": 2,
-  "dgSpecHash": "K3VATvtZpzQ=",
-  "success": true,
+  "dgSpecHash": "surdnliagOA=",
+  "success": false,
   "projectFilePath": "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Business\\FIsionAPI.Business.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\aldol\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.22\\microsoft.entityframeworkcore.8.0.22.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.22\\microsoft.entityframeworkcore.abstractions.8.0.22.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.22\\microsoft.entityframeworkcore.analyzers.8.0.22.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\microsoft.entityframeworkcore.design\\5.0.4\\microsoft.entityframeworkcore.design.5.0.4.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.4\\microsoft.entityframeworkcore.relational.5.0.4.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\10.0.1\\microsoft.entityframeworkcore.tools.10.0.1.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\8.0.0\\microsoft.extensions.caching.abstractions.8.0.0.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\microsoft.extensions.caching.memory\\8.0.1\\microsoft.extensions.caching.memory.8.0.1.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.1\\microsoft.extensions.dependencyinjection.8.0.1.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\microsoft.extensions.logging\\8.0.1\\microsoft.extensions.logging.8.0.1.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.2\\microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\microsoft.extensions.options\\8.0.2\\microsoft.extensions.options.8.0.2.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.22\\microsoft.windowsdesktop.app.ref.8.0.22.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.22\\microsoft.netcore.app.ref.8.0.22.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.22\\microsoft.aspnetcore.app.ref.8.0.22.nupkg.sha512"
-  ],
-  "logs": []
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "Não é possível carregar o índice de serviço para a origem https://nuget.agilesvcs.com/v3/index.json.\r\n  Uma tentativa de conexão falhou porque o componente conectado não respondeu\r\n  corretamente após um período de tempo ou a conexão estabelecida falhou\r\n  porque o host conectado não respondeu. (nuget.agilesvcs.com:443)\r\n  Uma tentativa de conexão falhou porque o componente conectado não respondeu\r\n  corretamente após um período de tempo ou a conexão estabelecida falhou\r\n  porque o host conectado não respondeu.",
+      "projectPath": "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Business\\FIsionAPI.Business.csproj",
+      "filePath": "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Business\\FIsionAPI.Business.csproj",
+      "targetGraphs": []
+    },
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "Não é possível carregar o índice de serviço para a origem https://nuget.agilesvcs.com/v3/index.json.\r\n  Uma tentativa de conexão falhou porque o componente conectado não respondeu\r\n  corretamente após um período de tempo ou a conexão estabelecida falhou\r\n  porque o host conectado não respondeu. (nuget.agilesvcs.com:443)\r\n  Uma tentativa de conexão falhou porque o componente conectado não respondeu\r\n  corretamente após um período de tempo ou a conexão estabelecida falhou\r\n  porque o host conectado não respondeu.",
+      "projectPath": "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Business\\FIsionAPI.Business.csproj",
+      "filePath": "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Business\\FIsionAPI.Business.csproj",
+      "targetGraphs": []
+    },
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "Não é possível carregar o índice de serviço para a origem https://nuget.agilesvcs.com/v3/index.json.\r\n  Uma tentativa de conexão falhou porque o componente conectado não respondeu\r\n  corretamente após um período de tempo ou a conexão estabelecida falhou\r\n  porque o host conectado não respondeu. (nuget.agilesvcs.com:443)\r\n  Uma tentativa de conexão falhou porque o componente conectado não respondeu\r\n  corretamente após um período de tempo ou a conexão estabelecida falhou\r\n  porque o host conectado não respondeu.",
+      "projectPath": "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Business\\FIsionAPI.Business.csproj",
+      "filePath": "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Business\\FIsionAPI.Business.csproj",
+      "targetGraphs": []
+    },
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "Não é possível carregar o índice de serviço para a origem https://nuget.agilesvcs.com/v3/index.json.\r\n  Uma tentativa de conexão falhou porque o componente conectado não respondeu\r\n  corretamente após um período de tempo ou a conexão estabelecida falhou\r\n  porque o host conectado não respondeu. (nuget.agilesvcs.com:443)\r\n  Uma tentativa de conexão falhou porque o componente conectado não respondeu\r\n  corretamente após um período de tempo ou a conexão estabelecida falhou\r\n  porque o host conectado não respondeu.",
+      "projectPath": "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Business\\FIsionAPI.Business.csproj",
+      "filePath": "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Business\\FIsionAPI.Business.csproj",
+      "targetGraphs": []
+    }
+  ]
 }

@@ -100,3 +100,44 @@ flowchart LR
 | **FIsionAPI.Data** | `FisionContext`, repositórios e configurações do EF Core (mapeamentos/migrations). |
 
 Dependências: **API** referencia **Data**; **Data** referencia **Business**; **Business** é a camada de domínio e regras de negócio.
+
+---
+
+## Configuração local (banco de dados)
+
+A API usa **dois bancos SQL Server** (duas connection strings):
+
+| Chave | Uso |
+|-------|-----|
+| `DefaultConnection` | Domínio (`FisionContext` — entidades, pessoas, financeiro, etc.) |
+| `AuthenticationConnection` | Identity (`AuthenticationDbContext` — usuários e perfis) |
+
+**Não commite senhas ou servidores reais.** O repositório mantém `appsettings.json` com valores vazios; em desenvolvimento use um destes:
+
+1. **Copiar o exemplo**  
+   Copie `FIsionAPI.API/connectionstrings.Development.json.example` para `FIsionAPI.API/appsettings.Development.json` e ajuste servidor e nomes dos bancos. Esse arquivo já está no `.gitignore`.
+
+2. **User Secrets (recomendado)**  
+   O projeto `FIsionAPI.API` possui `UserSecretsId`; em desenvolvimento o host carrega segredos automaticamente.
+
+   ```bash
+   cd FIsionAPI.API
+   dotnet user-secrets set "ConnectionStrings:DefaultConnection" "SUA_STRING_DOMINIO"
+   dotnet user-secrets set "ConnectionStrings:AuthenticationConnection" "SUA_STRING_AUTH"
+   ```
+
+3. **Variáveis de ambiente** (útil em CI/Docker): `ConnectionStrings__DefaultConnection` e `ConnectionStrings__AuthenticationConnection`.
+
+### Aplicar migrations (após definir as connection strings)
+
+Na raiz do repositório (ajuste os caminhos se usar só uma pasta do projeto):
+
+```bash
+dotnet ef database update --project FIsionAPI.Data --startup-project FIsionAPI.API --context FisionContext
+
+dotnet ef database update --project FIsionAPI.API --startup-project FIsionAPI.API --context AuthenticationDbContext
+```
+
+O `startup-project` precisa ser a API para carregar `appsettings` / User Secrets e as connection strings.
+
+Instale a ferramenta global se ainda não tiver: `dotnet tool install --global dotnet-ef` (versão alinhada ao EF Core 8).
