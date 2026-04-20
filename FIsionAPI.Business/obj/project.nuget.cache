@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "F3v0CUvI2sI=",
+  "dgSpecHash": "3tegr/uLh0k=",
   "success": true,
   "projectFilePath": "E:\\Estudos\\Repositorios\\Fision.API\\FIsionAPI.Business\\FIsionAPI.Business.csproj",
   "expectedPackageFiles": [
@@ -8,7 +8,6 @@
     "C:\\Users\\aldol\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\aldol\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",
     "C:\\Users\\aldol\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
-    "C:\\Users\\aldol\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\aldol\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.22\\microsoft.entityframeworkcore.8.0.22.nupkg.sha512",
     "C:\\Users\\aldol\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.22\\microsoft.entityframeworkcore.abstractions.8.0.22.nupkg.sha512",
     "C:\\Users\\aldol\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.22\\microsoft.entityframeworkcore.analyzers.8.0.22.nupkg.sha512",

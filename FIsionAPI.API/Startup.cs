@@ -10,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi;
 using System;
 
 namespace FIsionAPI.API;
@@ -56,10 +55,7 @@ public class Startup
 
         services.AddAuthorization();
 
-        services.AddSwaggerGen(c =>
-        {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "FIsionAPI.API", Version = "v1" });
-        });
+        services.AddSwaggerConfiguration();
 
         services.AddApiVersioning(options =>
         {
