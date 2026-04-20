@@ -2,7 +2,9 @@
 using FIsionAPI.Business.Notificacões;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System;
 using System.Linq;
+using System.Security.Claims;
 
 namespace FIsionAPI.API.Controllers;
 
@@ -15,6 +17,33 @@ public class BaseController : ControllerBase
     {
         _notificador = notificador;
     }
+
+    /// <summary>Indica se o usuário da requisição atual está autenticado.</summary>
+    protected bool UsuarioAutenticado => User?.Identity?.IsAuthenticated ?? false;
+
+    /// <summary>Id do usuário autenticado (claim 'sub' / NameIdentifier).</summary>
+    protected string UsuarioId =>
+        User?.FindFirst(ClaimTypes.NameIdentifier)?.Value
+        ?? User?.FindFirst("sub")?.Value;
+
+    /// <summary>Email do usuário autenticado.</summary>
+    protected string UsuarioEmail => User?.FindFirst(ClaimTypes.Email)?.Value;
+
+    /// <summary>Nome amigável do usuário autenticado (claim customizada 'nome').</summary>
+    protected string UsuarioNome => User?.FindFirst("nome")?.Value;
+
+    /// <summary>PessoaId vinculada ao usuário autenticado, se houver.</summary>
+    protected Guid? UsuarioPessoaId
+    {
+        get
+        {
+            var valor = User?.FindFirst("pessoaId")?.Value;
+            return Guid.TryParse(valor, out var id) ? id : null;
+        }
+    }
+
+    /// <summary>Verifica se o usuário autenticado pertence à role informada.</summary>
+    protected bool UsuarioTemRole(string role) => User?.IsInRole(role) ?? false;
 
     protected bool OperacaoValida()
     {

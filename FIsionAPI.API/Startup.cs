@@ -54,7 +54,7 @@ public class Startup
         // JWT
         services.AddJwtConfiguration(Configuration);
 
-        services.AddAuthorization();
+        services.AddAuthorizationConfiguration();
 
         services.AddSwaggerConfiguration();
 
