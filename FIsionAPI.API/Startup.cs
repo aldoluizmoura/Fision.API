@@ -4,12 +4,14 @@ using FIsionAPI.API.Configurations;
 using FIsionAPI.Data.Contexto;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi;
+using System;
 
 namespace FIsionAPI.API;
 
@@ -21,6 +23,7 @@ public class Startup
     }
 
     public IConfiguration Configuration { get; }
+
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddDbContext<FisionContext>(options =>
@@ -29,9 +32,30 @@ public class Startup
         services.AddDbContext<AuthenticationDbContext>(options =>
            options.UseSqlServer(Configuration.GetConnectionString("AuthenticationConnection")));
 
-        services.AddIdentityApiEndpoints<User>().AddEntityFrameworkStores<AuthenticationDbContext>();
+        // Identity com Roles
+        services
+            .AddIdentity<User, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 8;
+                options.Password.RequireDigit = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
+
+                options.User.RequireUniqueEmail = true;
+                options.SignIn.RequireConfirmedEmail = false;
+            })
+            .AddEntityFrameworkStores<AuthenticationDbContext>()
+            .AddDefaultTokenProviders();
+
+        // JWT
+        services.AddJwtConfiguration(Configuration);
 
         services.AddAuthorization();
+
         services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "FIsionAPI.API", Version = "v1" });
@@ -45,7 +69,7 @@ public class Startup
         });
 
         services.AddAutoMapper(typeof(Startup));
-        services.AddControllers();        
+        services.AddControllers();
         services.ResolveDependecies();
     }
 
@@ -67,7 +91,6 @@ public class Startup
 
         app.UseEndpoints(endpoints =>
         {
-            endpoints.MapIdentityApi<User>();
             endpoints.MapControllers();
         });
     }
