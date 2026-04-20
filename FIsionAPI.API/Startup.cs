@@ -1,5 +1,6 @@
 using FIsionAPI.API.Authentication.AuthenticationConfig;
 using FIsionAPI.API.Authentication.Models;
+using FIsionAPI.API.Authentication;
 using FIsionAPI.API.Configurations;
 using FIsionAPI.Data.Contexto;
 using Microsoft.AspNetCore.Builder;
@@ -77,6 +78,9 @@ public class Startup
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FIsionAPI.API v1"));
         }
+
+        // Seed de roles e admin
+        IdentityDataSeeder.SeedAsync(app).GetAwaiter().GetResult();
 
         app.UseHttpsRedirection();
 
