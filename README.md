@@ -141,3 +141,12 @@ dotnet ef database update --project FIsionAPI.API --startup-project FIsionAPI.AP
 O `startup-project` precisa ser a API para carregar `appsettings` / User Secrets e as connection strings.
 
 Instale a ferramenta global se ainda não tiver: `dotnet tool install --global dotnet-ef` (versão alinhada ao EF Core 8).
+
+### Identity API Endpoints (pipeline)
+
+Com as migrations do `AuthenticationDbContext` aplicadas e a `AuthenticationConnection` configurada, o `Startup` expõe os endpoints do Identity e autentica requisições com **Bearer token**:
+
+- `UseAuthentication()` antes de `UseAuthorization()`
+- `MapIdentityApi<User>()` junto de `MapControllers()`
+
+Rotas padrão na raiz da aplicação (ajuste a URL base conforme o ambiente), por exemplo: **`POST /register`** e **`POST /login`** com corpo JSON contendo email/senha conforme o contrato do ASP.NET Core Identity. O token retornado deve ser enviado no header `Authorization: Bearer <token>` quando os controllers forem protegidos com `[Authorize]` (próximas fases).
