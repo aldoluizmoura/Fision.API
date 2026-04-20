@@ -11,7 +11,28 @@ public class AuthenticationDbContext(DbContextOptions options) : IdentityDbConte
     {
         base.OnModelCreating(builder);
 
-        builder.Entity<User>().ToTable("Usuarios");
+        builder.Entity<User>(entity =>
+        {
+            entity.ToTable("Usuarios");
+
+            entity.Property(u => u.Nome)
+                  .IsRequired()
+                  .HasMaxLength(150);
+
+            entity.Property(u => u.Documento)
+                  .HasMaxLength(20);
+
+            entity.Property(u => u.DataCadastro)
+                  .IsRequired();
+
+            entity.Property(u => u.Ativo)
+                  .IsRequired();
+
+            entity.HasIndex(u => u.Documento)
+                  .IsUnique()
+                  .HasFilter("[Documento] IS NOT NULL");
+        });
+
         builder.Entity<IdentityRole>().ToTable("Perfis");
 
         builder.Entity<IdentityUserRole<string>>()
