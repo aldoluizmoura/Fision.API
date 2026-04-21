@@ -14,49 +14,32 @@ A API é versionada (v1) e expõe recursos como entidades, caixa e movimentos fi
 
 ### Principais entidades
 
-| Entidade | Descrição |
-|----------|-----------|
-| **Pessoa** | Dados cadastrais e endereço |
-| **Entidade** | Vínculo pessoa–organização (Aluno/Profissional), matrícula, especialidade, contrato |
-| **Especialidades** | Especialidades disponíveis |
-| **EnderecoPessoa** | Endereço da pessoa |
-| **ContratoFinanceiro** | Contrato financeiro da entidade |
-| **MovimentoFinanceiroEntidade** / **MovimentoFinanceiroAvulso** | Lançamentos financeiros |
-| **Caixa** | Controle de caixa |
-
----
-
-## Regras Cursor (.mdc)
-
-As regras do Cursor ficam em `.cursor/rules/`:
-
-### cursor-rules.mdc
-
-- **Propósito:** Como adicionar e editar regras do Cursor no projeto.
-- **Conteúdo:** Regras devem ficar em `PROJECT_ROOT/.cursor/rules/`, com nome em **kebab-case** e extensão **.mdc**. Cada arquivo tem frontmatter (`description`, `globs`, `alwaysApply`) e conteúdo em Markdown com instruções e exemplos. Não usar a raiz do projeto nem pastas fora de `.cursor/rules/` para regras.
-
-### self-improvement.mdc
-
-- **Propósito:** Diretrizes para melhorar as regras com base em padrões e boas práticas do código.
-- **Aplicação:** Sempre ativa (`alwaysApply: true`).
-- **Conteúdo:** Quando criar ou alterar regras (novos padrões, código repetido, erros evitáveis, novas libs). Processo: comparar código com regras, padronizar padrões, revisar tratamento de erros e testes. Adicionar regra quando uma tecnologia/padrão aparecer em 3+ arquivos, quando bugs puderem ser prevenidos ou quando surgirem padrões de segurança/performance. Inclui depreciação de regras e referência ao `cursor-rules.mdc` para formato.
+| Entidade                                                        | Descrição                                                                           |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| **Pessoa**                                                      | Dados cadastrais e endereço                                                         |
+| **Entidade**                                                    | Vínculo pessoa–organização (Aluno/Profissional), matrícula, especialidade, contrato |
+| **Especialidades**                                              | Especialidades disponíveis                                                          |
+| **EnderecoPessoa**                                              | Endereço da pessoa                                                                  |
+| **ContratoFinanceiro**                                          | Contrato financeiro da entidade                                                     |
+| **MovimentoFinanceiroEntidade** / **MovimentoFinanceiroAvulso** | Lançamentos financeiros                                                             |
+| **Caixa**                                                       | Controle de caixa                                                                   |
 
 ---
 
 ## Tecnologias utilizadas
 
-| Camada / Aspecto | Tecnologia |
-|------------------|------------|
-| **Runtime / Framework** | .NET 8.0 |
-| **API** | ASP.NET Core (Web API), Startup + Program |
-| **Banco de dados** | SQL Server, Entity Framework Core 8.0.22 |
-| **ORM / Acesso a dados** | EF Core (DbContext, repositórios), EF Core Tools/Design |
-| **Autenticação** | ASP.NET Core Identity (Identity API Endpoints), segundo DbContext para usuários |
-| **Documentação API** | Swagger (Swashbuckle.AspNetCore 10.1.0) |
-| **Versionamento API** | Microsoft.AspNetCore.Mvc.Versioning 5.0.0 (rotas `api/v1/...`) |
-| **Mapeamento** | AutoMapper + Extensions.Microsoft.DependencyInjection |
-| **Validação** | FluentValidation (projeto Business) |
-| **Estrutura** | Solução em 3 projetos: API, Business, Data |
+| Camada / Aspecto         | Tecnologia                                                                      |
+| ------------------------ | ------------------------------------------------------------------------------- |
+| **Runtime / Framework**  | .NET 8.0                                                                        |
+| **API**                  | ASP.NET Core (Web API), Startup + Program                                       |
+| **Banco de dados**       | SQL Server, Entity Framework Core 8.0.22                                        |
+| **ORM / Acesso a dados** | EF Core (DbContext, repositórios), EF Core Tools/Design                         |
+| **Autenticação**         | ASP.NET Core Identity (Identity API Endpoints), segundo DbContext para usuários |
+| **Documentação API**     | Swagger (Swashbuckle.AspNetCore 10.1.0)                                         |
+| **Versionamento API**    | Microsoft.AspNetCore.Mvc.Versioning 5.0.0 (rotas `api/v1/...`)                  |
+| **Mapeamento**           | AutoMapper + Extensions.Microsoft.DependencyInjection                           |
+| **Validação**            | FluentValidation (projeto Business)                                             |
+| **Estrutura**            | Solução em 3 projetos: API, Business, Data                                      |
 
 ---
 
@@ -93,11 +76,11 @@ flowchart LR
 
 ## Estrutura da solução
 
-| Projeto | Descrição |
-|---------|-----------|
-| **FIsionAPI.API** | Controllers (V1), ViewModels, configuração, autenticação, Swagger e injeção de dependências. |
+| Projeto                | Descrição                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------- |
+| **FIsionAPI.API**      | Controllers (V1), ViewModels, configuração, autenticação, Swagger e injeção de dependências.        |
 | **FIsionAPI.Business** | Modelos de domínio, interfaces (repositórios e serviços), serviços e validações (FluentValidation). |
-| **FIsionAPI.Data** | `FisionContext`, repositórios e configurações do EF Core (mapeamentos/migrations). |
+| **FIsionAPI.Data**     | `FisionContext`, repositórios e configurações do EF Core (mapeamentos/migrations).                  |
 
 Dependências: **API** referencia **Data**; **Data** referencia **Business**; **Business** é a camada de domínio e regras de negócio.
 
@@ -107,10 +90,10 @@ Dependências: **API** referencia **Data**; **Data** referencia **Business**; **
 
 A API usa **dois bancos SQL Server** (duas connection strings):
 
-| Chave | Uso |
-|-------|-----|
-| `DefaultConnection` | Domínio (`FisionContext` — entidades, pessoas, financeiro, etc.) |
-| `AuthenticationConnection` | Identity (`AuthenticationDbContext` — usuários e perfis) |
+| Chave                      | Uso                                                              |
+| -------------------------- | ---------------------------------------------------------------- |
+| `DefaultConnection`        | Domínio (`FisionContext` — entidades, pessoas, financeiro, etc.) |
+| `AuthenticationConnection` | Identity (`AuthenticationDbContext` — usuários e perfis)         |
 
 **Não commite senhas ou servidores reais.** O repositório mantém `appsettings.json` com valores vazios; em desenvolvimento use um destes:
 
