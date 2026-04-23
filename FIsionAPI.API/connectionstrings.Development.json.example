@@ -1,0 +1,6 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=FisionDb;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true",
+    "AuthenticationConnection": "Server=(localdb)\\mssqllocaldb;Database=FisionAuthDb;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true"
+  }
+}

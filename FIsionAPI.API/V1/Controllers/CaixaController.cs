@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using FIsionAPI.API.Authentication;
 using FIsionAPI.API.Controllers;
 using FIsionAPI.API.ViewModels;
 using FIsionAPI.Business.Interfaces;
 using FIsionAPI.Business.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace FIsionAPI.API.V1.Controllers;
 
+[Authorize(Policy = Policies.RequerGestor)]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/caixa")]
 public class CaixaController : BaseController
@@ -62,6 +65,7 @@ public class CaixaController : BaseController
     }
 
     [HttpDelete("excluir-caixa/id:guid")]
+    [Authorize(Policy = Policies.RequerAdmin)]
     public async Task<ActionResult> Excluir(Guid id)
     {
         var caixa = await ObterCaixa(id);
