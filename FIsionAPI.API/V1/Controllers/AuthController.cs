@@ -57,7 +57,7 @@ public class AuthController : BaseController
         }
 
         var token = await _tokenService.GerarTokenAsync(user);
-        return CustomResponse(MapearResposta(token));
+        return CustomResponse(token);
     }
 
     [HttpPost("login")]
@@ -98,14 +98,27 @@ public class AuthController : BaseController
         await _userManager.UpdateAsync(user);
 
         var token = await _tokenService.GerarTokenAsync(user);
-        return CustomResponse(MapearResposta(token));
+        return CustomResponse(token);
     }
 
-    private static TokenRespostaViewModel MapearResposta(TokenResponse token) => new()
+    [HttpPost("refresh-token")]
+    [AllowAnonymous]
+    public async Task<ActionResult> RefreshToken([FromBody] string refreshToken)
     {
-        AccessToken = token.AccessToken,
-        TokenType = token.TokenType,
-        ExpiresIn = token.ExpiresIn,
-        ExpiresAt = token.ExpiresAt
-    };
+        var token = await _tokenService.ObterRefreshTokenAsync(refreshToken);
+        if (token == null || token.User == null)
+        {
+            NotificarErro("Refresh token inválido ou expirado.");
+            return CustomResponse();
+        }
+        var response = await _tokenService.GerarTokenAsync(token.User);
+        return CustomResponse(response);
+    }
+
+    [HttpPost("logout")]
+    public async Task<ActionResult> Logout([FromBody] string refreshToken)
+    {
+        await _tokenService.RevogarRefreshTokenAsync(refreshToken);
+        return CustomResponse();
+    }
 }

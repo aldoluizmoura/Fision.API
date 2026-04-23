@@ -39,4 +39,12 @@ public class TokenRespostaViewModel
     public string TokenType { get; set; }
     public int ExpiresIn { get; set; }
     public System.DateTime ExpiresAt { get; set; }
+    public string RefreshToken { get; set; }
+    public System.DateTime RefreshTokenExpiresAt { get; set; }
+}
+
+public class RefreshTokenRequestViewModel
+{
+    [Required]
+    public string RefreshToken { get; set; }
 }
