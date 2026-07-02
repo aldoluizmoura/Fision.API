@@ -46,7 +46,7 @@ public class MovimentoFinanceiroController : BaseController
         return movimentosFinanceirosViewModel;
     }
 
-    [HttpGet("id:guid")]
+    [HttpGet("{id:guid}")]
     public async Task<MovimentoFinanceiroViewModel> MostrarPorId(Guid Id)
     {
         var movimentosFinanceiros = await _movimentoRepository.ObterPorId(Id);
@@ -98,7 +98,7 @@ public class MovimentoFinanceiroController : BaseController
         return CustomResponse(movimentoViewModel);
     }
 
-    [HttpPut("quitar-movimento/id:guid")]
+    [HttpPut("quitar-movimento/{id:guid}")]
     public async Task<ActionResult> Quitar(Guid id)
     {
         var movimentoViewModel = await ObterMovimento(id);
@@ -114,7 +114,7 @@ public class MovimentoFinanceiroController : BaseController
         return CustomResponse(movimentoViewModel);
     }
 
-    [HttpPut("desquitar-movimento/id:guid")]
+    [HttpPut("desquitar-movimento/{id:guid}")]
     public async Task<ActionResult> Desquitar(Guid id)
     {
         var movimentoViewModel = await ObterMovimento(id);
@@ -130,7 +130,7 @@ public class MovimentoFinanceiroController : BaseController
         return CustomResponse(movimentoViewModel);
     }
 
-    [HttpDelete]
+    [HttpDelete("{id:guid}")]
     [Authorize(Policy = Policies.RequerAdmin)]
     public async Task<ActionResult> Excluir(Guid id)
     {

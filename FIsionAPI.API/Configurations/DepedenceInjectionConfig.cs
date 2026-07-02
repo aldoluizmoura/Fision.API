@@ -14,7 +14,8 @@ public static class DepedenceInjectionConfig
         service.AddScoped<FisionContext>();
         service.AddScoped<IPessoaRepositoy, PessoaRepository>();
         service.AddScoped<IEntidadeRepository, EntidadeRepository>();
-        service.AddScoped<EspecialidadeRepository, EspecialidadeRepository>();
+        service.AddScoped<IEspecialidadeRepository, EspecialidadeRepository>();
+        service.AddScoped<IUnitOfWork, UnitOfWork>();
         service.AddScoped<IEnderecoPessoaRepository, EnderecoPessoaRepository>();
         service.AddScoped<IContratoFinanceiroRepository, ContratoFinanceiroRepository>();
         service.AddScoped<IMovimentoFinanceiroRepository, MovimentoFinanceiroRepository>();

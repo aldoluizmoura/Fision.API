@@ -35,3 +35,6 @@ jobs:
 
       - name: Build
         run: dotnet build FIsionAPI.sln --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test FIsionAPI.sln --configuration Release --no-build

@@ -1,3 +1,4 @@
+using FIsionAPI.API.Authentication;
 using FIsionAPI.API.Authentication.Jwt;
 using FIsionAPI.API.Authentication.Models;
 using FIsionAPI.API.Controllers;
@@ -56,6 +57,8 @@ public class AuthController : BaseController
             return CustomResponse();
         }
 
+        await _userManager.AddToRoleAsync(user, Roles.Usuario);
+
         var token = await _tokenService.GerarTokenAsync(user);
         return CustomResponse(token);
     }
@@ -70,13 +73,13 @@ public class AuthController : BaseController
 
         if (user is null)
         {
-            NotificarErro("Usu·rio ou senha incorretos");
+            NotificarErro("Usuùrio ou senha incorretos");
             return CustomResponse();
         }
 
         if (!user.Ativo)
         {
-            NotificarErro("Usu·rio inativo. Contate o administrador.");
+            NotificarErro("Usuùrio inativo. Contate o administrador.");
             return CustomResponse();
         }
 
@@ -84,13 +87,13 @@ public class AuthController : BaseController
 
         if (resultado.IsLockedOut)
         {
-            NotificarErro("Usu·rio temporariamente bloqueado por excesso de tentativas.");
+            NotificarErro("Usuùrio temporariamente bloqueado por excesso de tentativas.");
             return CustomResponse();
         }
 
         if (!resultado.Succeeded)
         {
-            NotificarErro("Usu·rio ou senha incorretos");
+            NotificarErro("Usuùrio ou senha incorretos");
             return CustomResponse();
         }
 
@@ -108,7 +111,7 @@ public class AuthController : BaseController
         var token = await _tokenService.ObterRefreshTokenAsync(refreshToken);
         if (token == null || token.User == null)
         {
-            NotificarErro("Refresh token inv·lido ou expirado.");
+            NotificarErro("Refresh token invùlido ou expirado.");
             return CustomResponse();
         }
         var response = await _tokenService.GerarTokenAsync(token.User);

@@ -2,6 +2,7 @@
 using FIsionAPI.Business.Models;
 using FIsionAPI.Business.Models.Enums;
 using FIsionAPI.Business.Models.Validacões;
+using FIsionAPI.Business.Models.Validacões.Documentos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,20 +40,22 @@ public class EntidadeService : BaseService, IEntidadeService
     {
         if (!ExecutarValidacao(new EntidadeValidation(), entidade)
             || !ExecutarValidacao(new PessoaValidation(), entidade.Pessoa)
-            || !ExecutarValidacao(new ContratoFinanceiroValidation(), entidade.Contrato))
+            || !ExecutarValidacao(new ContratoFinanceiroValidation(), entidade.Contrato)
+            || (entidade.Pessoa?.Endereco != null && !ExecutarValidacao(new EnderecoValidation(), entidade.Pessoa.Endereco)))
         {
             return false;
         }
 
-        var cpfExiste = _pessoaRepository.Buscar(e => e.CPF == entidade.Pessoa.CPF).Result.Any();
+        var pessoasComCpf = await _pessoaRepository.Buscar(e => e.CPF == entidade.Pessoa.CPF);
 
-        if (cpfExiste)
+        if (pessoasComCpf.Any())
         {
             Notificar("Já existe uma pessoa com esse CPF");
             return false;
         }
 
         await _entidadeRepository.Adicionar(entidade);
+        await _unitOfWork.Commit();
 
         return true;
     }
@@ -61,7 +64,8 @@ public class EntidadeService : BaseService, IEntidadeService
     {
         if (!ExecutarValidacao(new EntidadeValidation(), entidade)
             || !ExecutarValidacao(new PessoaValidation(), entidade.Pessoa)
-            || !ExecutarValidacao(new ContratoFinanceiroValidation(), entidade.Contrato))
+            || !ExecutarValidacao(new ContratoFinanceiroValidation(), entidade.Contrato)
+            || (entidade.Pessoa?.Endereco != null && !ExecutarValidacao(new EnderecoValidation(), entidade.Pessoa.Endereco)))
         {
             return false;
         }
@@ -89,6 +93,11 @@ public class EntidadeService : BaseService, IEntidadeService
         if (endereco == null)
         {
             Notificar("Objeto não encontrado");
+            return;
+        }
+
+        if (!ExecutarValidacao(new EnderecoValidation(), endereco))
+        {
             return;
         }
 
