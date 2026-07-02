@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using FIsionAPI.API.Authentication;
 using FIsionAPI.API.Controllers;
 using FIsionAPI.API.ViewModels;
 using FIsionAPI.Business.Interfaces;
 using FIsionAPI.Business.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace FIsionAPI.API.V1.Controllers;
 
+[Authorize]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/entidades")]
 public class EntidadeController : BaseController
@@ -80,6 +83,7 @@ public class EntidadeController : BaseController
     }
 
     [HttpDelete("{id:guid}")]
+    [Authorize(Policy = Policies.RequerAdmin)]
     public async Task<ActionResult<EntidadeViewModel>> Remover(Guid id)
     {
         var entidadeViewModel = await _entidadeRepository.ObterPorEntidadeId(id);

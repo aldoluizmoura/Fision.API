@@ -215,6 +215,7 @@ public class MovimentoFinanceiroService : BaseService, IMovimentoFinanceiroServi
             DateTime.Now,
             contratoFinanceiro.Id,
             TipoMovimento.Receita,
+            competenciaMensalidade: movimento.CompetenciaMensalidade,
             competenciaPagamento: movimento.CompetenciaPagamento,
             quantidadeAlunos: contratoFinanceiro.Quantidade);
     }

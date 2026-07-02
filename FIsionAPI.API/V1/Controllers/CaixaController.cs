@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using FIsionAPI.API.Authentication;
 using FIsionAPI.API.Controllers;
 using FIsionAPI.API.ViewModels;
 using FIsionAPI.Business.Interfaces;
 using FIsionAPI.Business.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace FIsionAPI.API.V1.Controllers;
 
+[Authorize(Policy = Policies.RequerGestor)]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/caixa")]
 public class CaixaController : BaseController
@@ -37,7 +40,7 @@ public class CaixaController : BaseController
         return caixas;
     }
 
-    [HttpGet("id:guid")]
+    [HttpGet("{id:guid}")]
     public async Task<CaixaViewModel> MostrarPorId(Guid id)
     {
         var entidade = await _caixaRepository.ObterCaixaPorId(id);
@@ -61,7 +64,8 @@ public class CaixaController : BaseController
         return CustomResponse(caixa);
     }
 
-    [HttpDelete("excluir-caixa/id:guid")]
+    [HttpDelete("excluir-caixa/{id:guid}")]
+    [Authorize(Policy = Policies.RequerAdmin)]
     public async Task<ActionResult> Excluir(Guid id)
     {
         var caixa = await ObterCaixa(id);
@@ -76,7 +80,7 @@ public class CaixaController : BaseController
         return CustomResponse(caixa);
     }
 
-    [HttpPut("fechar-caixa/id:guid")]
+    [HttpPut("fechar-caixa/{id:guid}")]
     public async Task<ActionResult> FecharCaixa(Guid id)
     {
         var caixa = await ObterCaixa(id);
@@ -91,7 +95,7 @@ public class CaixaController : BaseController
         return CustomResponse(caixa);
     }
 
-    [HttpPut("reabrir-caixa/id:guid")]
+    [HttpPut("reabrir-caixa/{id:guid}")]
     public async Task<ActionResult> ReabrirCaixa(Guid id)
     {
         var caixa = await ObterCaixa(id);

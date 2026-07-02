@@ -1,0 +1,99 @@
+---
+description: Padrões e melhores práticas de C# e .NET para o projeto Fision.API
+globs: **/*.cs
+alwaysApply: true
+---
+# Padrões C# e .NET
+
+Seguir estas convenções em todo o código C# do repositório.
+
+## Nomenclatura
+
+- **Tipos (classes, interfaces, enums):** PascalCase. Interfaces com prefixo `I` (ex.: `IEntidadeRepository`, `INotificador`).
+- **Membros públicos e parâmetros:** PascalCase para métodos e propriedades; camelCase para parâmetros e variáveis locais.
+- **Campos privados:** _camelCase com underscore ou camelCase; preferir `readonly` quando não forem alterados.
+- **Constantes e estáticos readonly:** PascalCase.
+- **Namespaces:** refletir a estrutura de pastas; um namespace por arquivo, alinhado ao projeto (ex.: `FIsionAPI.Business.Models`, `FIsionAPI.API.V1.Controllers`).
+
+## Async / Await
+
+- Métodos que realizam I/O ou operações assíncronas devem retornar `Task` ou `Task<T>` e ter sufixo `Async` (ex.: `ObterPorIdAsync`, `SaveChangesAsync`).
+- Evitar `async void`; usar apenas em event handlers quando necessário.
+- Preferir `await` em vez de `.Result` ou `.Wait()` para evitar deadlocks.
+- Em bibliotecas reutilizáveis, considerar `ConfigureAwait(false)`; em controllers e código de aplicação ASP.NET Core normalmente não é necessário.
+
+```csharp
+// Bom
+public async Task<Entidade> ObterPorIdAsync(Guid id, CancellationToken cancellationToken = default)
+{
+    return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+}
+
+// Evitar
+public Entidade ObterPorId(Guid id) => _dbSet.FirstOrDefault(x => x.Id == id).Result;
+```
+
+## Controllers (API)
+
+- Manter controllers enxutos: delegar lógica para serviços na camada Business; usar ViewModels/DTOs para entrada e saída.
+- Herdar de `BaseController` quando existir (uso de `INotificador`, `CustomResponse`, `NotificarErro`).
+- Usar atributos de rota e versão de API de forma consistente (ex.: `[ApiVersion("1.0")]`, `[Route("api/v{version:apiVersion}/entidades")]`).
+- Retornar `ActionResult` ou `ActionResult<T>`; usar os helpers do `BaseController` para respostas padronizadas (sucesso/erro).
+- Validar entrada com `ModelState` e, quando aplicável, FluentValidation antes de chamar serviços.
+
+## Injeção de Dependência
+
+- Preferir injeção por construtor: dependências como parâmetros e armazenadas em campos `readonly`.
+- Depender de abstrações (interfaces) definidas na camada Business; implementações registradas na API (ex.: `ResolveDependecies()`).
+- Não instanciar serviços ou repositórios com `new` dentro de controllers ou serviços; receber via construtor.
+
+```csharp
+// Bom
+public class EntidadeController : BaseController
+{
+    private readonly IEntidadeRepository _entidadeRepository;
+    private readonly IEntidadeService _entidadeService;
+    private readonly IMapper _mapper;
+
+    public EntidadeController(INotificador notificador, IMapper mapper,
+        IEntidadeService entidadeService, IEntidadeRepository entidadeRepository) : base(notificador)
+    {
+        _entidadeRepository = entidadeRepository;
+        _entidadeService = entidadeService;
+        _mapper = mapper;
+    }
+}
+```
+
+## Acesso a Dados (Entity Framework Core)
+
+- Consultas somente leitura: usar `AsNoTracking()` para melhor desempenho.
+- Métodos assíncronos: preferir `FirstOrDefaultAsync`, `ToListAsync`, `SaveChangesAsync` com `CancellationToken` quando fizer sentido.
+- Persistência: centralizar em um único ponto por operação (ex.: repositório ou unit of work); evitar múltiplos `SaveChanges` dispersos na mesma transação lógica.
+- Configurações de entidade e mapeamentos: usar classes que implementam `IEntityTypeConfiguration<T>` e `ApplyConfigurationsFromAssembly` no `DbContext`.
+
+## Validação e Tratamento de Erros
+
+- Validação de entrada na API: usar anotações de dados e/ou FluentValidation; no controller, checar `ModelState.IsValid` e usar o padrão do projeto (ex.: `CustomReponse(ModelState)`).
+- Erros de negócio: usar o padrão do `INotificador` (ex.: `NotificarErro("mensagem")`) e retornar resposta padronizada via `CustomResponse`.
+- Não engolir exceções: registrar e/ou repassar quando apropriado; em APIs, deixar o pipeline tratar exceções não tratadas (e usar filtros ou middleware se necessário).
+
+## Nullability e Null Checks
+
+- Preferir referências anuláveis habilitadas (`nullable reference types`) em novos arquivos quando o projeto permitir.
+- Fazer null check antes de usar referências que podem ser nulas; usar operadores `?.`, `??` e `??=` quando fizerem sentido.
+- Em APIs: retornar `404` quando um recurso não for encontrado (ex.: entidade por id); usar os helpers do controller para respostas consistentes.
+
+## Estrutura do Projeto
+
+- **FIsionAPI.API:** controllers, ViewModels, configuração, middleware e registro de DI; sem lógica de negócio pesada.
+- **FIsionAPI.Business:** modelos de domínio, interfaces (repositórios e serviços), serviços e validadores (FluentValidation).
+- **FIsionAPI.Data:** implementação de repositórios, `DbContext`, configurações do EF e migrations.
+
+Não referenciar a camada Data a partir da API para além do necessário para registro de DI; a API deve depender da Business (e da Data apenas indiretamente via abstrações registradas).
+
+## Outros
+
+- Preferir `var` quando o tipo for óbvio pelo lado direito; usar tipo explícito quando melhorar legibilidade.
+- Usar `Guid` para identificadores de entidades de domínio quando já for o padrão do projeto.
+- Propriedades de entidade com `DataCadastro`/`DataAtualizacao`: preenchimento no `DbContext` (override de `SaveChangesAsync`) está alinhado ao padrão do projeto; manter consistência.
